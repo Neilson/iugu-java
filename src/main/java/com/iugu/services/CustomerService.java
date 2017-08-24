@@ -11,7 +11,7 @@ import com.iugu.responses.CustomerResponse;
 
 public class CustomerService {
 
-	private IuguConfiguration iugu;
+	private IuguConfiguration iugu = null;
 	private final String CREATE_URL = IuguConfiguration.url("/customers");
 	private final String FIND_URL = IuguConfiguration.url("/customers/%s");
 	private final String CHANGE_URL = IuguConfiguration.url("/customers/%s");
@@ -93,5 +93,23 @@ public class CustomerService {
 		throw new IuguException("Error removing customer!", ResponseStatus, ResponseText);
 	}
 
-	// TODO Listar os clientes
+	public CustomerResponse list(Integer start, Integer max) throws IuguException {
+		Response response = this.iugu.getNewClient().target(CREATE_URL + "?limit=" + max + "&start='" + start).request().get();
+
+		int ResponseStatus = response.getStatus();
+		String ResponseText = null;
+
+		if (ResponseStatus == 200) {
+			// return response.readEntity(CustomerResponse.class);
+			System.err.println(response.readEntity(String.class));
+		}
+
+		// Error Happened
+		if (response.hasEntity())
+			ResponseText = response.readEntity(String.class);
+
+		response.close();
+
+		throw new IuguException("Error removing customer!", ResponseStatus, ResponseText);
+	}
 }

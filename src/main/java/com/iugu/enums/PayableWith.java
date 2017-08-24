@@ -1,8 +1,12 @@
 package com.iugu.enums;
 
-import org.codehaus.jackson.annotate.JsonValue;
+import java.io.Serializable;
 
-public enum PayableWith {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+
+public enum PayableWith implements Serializable{
 
 	CREDIT_CARD("credit_card"), ALL("all"), BANK_SLIP("bank_slip");
 
@@ -20,5 +24,15 @@ public enum PayableWith {
 	public void setValue(String value) {
 		this.value = value;
 	}
-
+	@JsonCreator
+	public static PayableWith fromStringOperator(String stringOperator) {
+		if(stringOperator != null) {
+			for(PayableWith payableWith: PayableWith.values()){
+				if (stringOperator.equalsIgnoreCase(payableWith.value)) {
+					return payableWith;
+				}
+			}
+		}
+		return null;
+	}
 }

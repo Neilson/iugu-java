@@ -2,76 +2,77 @@ package com.iugu.model;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Payer implements Serializable {
 
 	private static final long serialVersionUID = 3266886175287194L;
 
+	public Payer(String name, String email, String cpfcnpj, String phonePrefix, String phone, Address address) {
+		this.name = name;
+		this.email = email;
+		this.cpfCnpj = cpfcnpj;
+		this.phonePrefix = phonePrefix;
+		this.phone = phone;
+		this.address = address;
+	}
+	
+	/**
+	 * cnpj/cpf do cliente
+	 */
 	@JsonProperty("cpf_cnpj")
 	private String cpfCnpj;
 
+	/**
+	 * Nome do cliente
+	 */
 	private String name;
-
+	
+	/**
+	 * Prefixo do Telefone do Cliente
+	 */
 	@JsonProperty("phone_prefix")
 	private String phonePrefix;
-
+	
+	/**
+	 * Telefone do cliente
+	 */
 	private String phone;
 
+	/**
+	 * E-Mail do cliente
+	 */
 	private String email;
-
+	
+	/**
+	 * Endereço do cliente
+	 */
 	private Address address;
+
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getPhonePrefix() {
+		return this.phonePrefix;
+	}
+	
+	public String getPhone() {
+		return this.phone;
+	}
 
 	public String getCpfCnpj() {
 		return cpfCnpj;
 	}
-
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPhonePrefix() {
-		return phonePrefix;
-	}
-
-	public void setPhonePrefix(String phonePrefix) {
-		this.phonePrefix = phonePrefix;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
 	public Address getAddress() {
-		return address;
+		return this.address;
 	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }

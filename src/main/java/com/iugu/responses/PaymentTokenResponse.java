@@ -1,7 +1,7 @@
 package com.iugu.responses;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentTokenResponse {
@@ -13,7 +13,7 @@ public class PaymentTokenResponse {
 	private String method;
 
 	@JsonProperty("test")
-	private Boolean isTest;
+	private String isTest;
 
 	@JsonProperty("extra_info")
 	private ExtraInfoResponse extraInfo;
@@ -26,7 +26,7 @@ public class PaymentTokenResponse {
 		return method;
 	}
 
-	public Boolean getTest() {
+	public String getTest() {
 		return isTest;
 	}
 

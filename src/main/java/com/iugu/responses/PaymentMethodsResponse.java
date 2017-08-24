@@ -1,19 +1,15 @@
 package com.iugu.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.iugu.model.DataMethod;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LogResponse {
+public class PaymentMethodsResponse {
 
 	private String id;
-
 	private String description;
-
-	private String notes;
-
-	@JsonProperty("created_at")
-	private String createdAt;
+	private String item_type;
+	private DataMethod data;
 
 	public String getId() {
 		return id;
@@ -31,29 +27,29 @@ public class LogResponse {
 		this.description = description;
 	}
 
-	public String getNotes() {
-		return notes;
+	public String getItem_type() {
+		return item_type;
 	}
 
-	public void setNotes(String notes) {
-		this.notes = notes;
+	public void setItem_type(String item_type) {
+		this.item_type = item_type;
 	}
 
-	public String getCreatedAt() {
-		return createdAt;
+	public DataMethod getData() {
+		return data;
 	}
 
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
+	public void setData(DataMethod data) {
+		this.data = data;
 	}
 
 	@Override
 	public String toString() {
-		return "LogResponse{" +
+		return "PaymentMethodsResponse{" +
 				"id='" + id + '\'' +
 				", description='" + description + '\'' +
-				", notes='" + notes + '\'' +
-				", createdAt='" + createdAt + '\'' +
+				", item_type='" + item_type + '\'' +
+				", Data=" + data +
 				'}';
 	}
 }

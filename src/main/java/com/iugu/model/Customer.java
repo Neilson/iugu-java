@@ -3,153 +3,105 @@ package com.iugu.model;
 import java.io.Serializable;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer implements Serializable {
 
-	private static final long serialVersionUID = 3266886175287194L;
+  private static final long serialVersionUID = 3266886175287194L;
 
-	public Customer(String email, String name) {
-		this.email = email;
-		this.name = name;
-	}
+  public Customer(String name) {
+    this.name = name;
+  }
 
-	private String email;
+  public Customer(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
 
-	private String name;
+  /**
+   * E-Mail do cliente
+   */
+  private String email;
 
-	private String notes;
+  /**
+   * Nome do cliente
+   */
+  private String name;
 
-	@JsonProperty("cpf_cnpj")
-	private String cpfCnpj;
+  /**
+   * cnpj/cpf do cliente
+   */
+  @JsonProperty("cpf_cnpj")
+  private String cpfCnpj;
 
-	@JsonProperty("cc_emails")
-	private String ccEmails;
+  /**
+   * lista de emails que receberão cópias, em formato string separadas por
+   * vírgula
+   */
+  @JsonProperty("cc_emails")
+  private String ccEmails;
 
-	@JsonProperty("zip_code")
-	private String zipCode;
+  /**
+   * Anotações gerais do cliente
+   */
+  private String notes;
 
-	private Integer number;
+  /**
+   * Variáveis personalizadas do cliente
+   */
+  @JsonProperty("custom_variables")
+  private List<CustomVariable> customVariables;
 
-	private String street;
+  public String getEmail() {
+    return email;
+  }
 
-	private String city;
+  public Customer withEmail(String email) {
+    this.email = email;
+    return this;
+  }
 
-	private String state;
+  public String getName() {
+    return name;
+  }
 
-	private String district;
+  public String getCpfCnpj() {
+    return cpfCnpj;
+  }
 
-	private String complement;
+  public Customer withCpfCnpj(String cpfCnpj) {
+    this.cpfCnpj = cpfCnpj;
+    return this;
+  }
 
-	@JsonProperty("custom_variables")
-	private List<CustomVariable> customVariables;
+  public String getCcEmails() {
+    return ccEmails;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public Customer withCcEmails(String ccEmails) {
+    this.ccEmails = ccEmails;
+    return this;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public String getNotes() {
+    return notes;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public Customer withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public List<CustomVariable> getCustomVariables() {
+    return customVariables;
+  }
 
-	public String getNotes() {
-		return notes;
-	}
+  public Customer withCustomVariables(List<CustomVariable> customVariables) {
+    this.customVariables = customVariables;
 
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
-	public String getCpfCnpj() {
-		return cpfCnpj;
-	}
-
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
-	}
-
-	public String getCcEmails() {
-		return ccEmails;
-	}
-
-	public void setCcEmails(String ccEmails) {
-		this.ccEmails = ccEmails;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public Integer getNumber() {
-		return number;
-	}
-
-	public void setNumber(Integer number) {
-		this.number = number;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getComplement() {
-		return complement;
-	}
-
-	public void setComplement(String complement) {
-		this.complement = complement;
-	}
-
-	public List<CustomVariable> getCustomVariables() {
-		return customVariables;
-	}
-
-	public void setCustomVariables(List<CustomVariable> customVariables) {
-		this.customVariables = customVariables;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    return this;
+  }
 
 }

@@ -1,36 +1,41 @@
 package com.iugu.model;
 
-import java.util.List;
+import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.iugu.enums.ItemType;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PaymentMethod implements Serializable{
+	private static final long serialVersionUID = -8934205393711080140L;
 
-public class PaymentMethod {
-
-	public PaymentMethod(String description, String token, Boolean isDefault) {
-		this.description = description;
-		this.token = token;
-		this.isDefault=isDefault;
+	public PaymentMethod(){
 	}
 
-	public PaymentMethod(String description, Data data, Boolean isDefault) {
+	public PaymentMethod(String account_id, String token, String description, Boolean isDefault) {
 		this.description = description;
-		this.data = data;
 		this.isDefault = isDefault;
+		this.token = token;
+		this.accountId = account_id;
 	}
 
+	@JsonProperty("account_id")
+	private String accountId;
+	
 	private String description;
-
-	private Data data;
-
-	@JsonProperty("item_type")
-	private ItemType itemType;
-
 	private String token;
-
+	
 	@JsonProperty("set_as_default")
 	private Boolean isDefault;
+
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
 
 	public String getDescription() {
 		return description;
@@ -38,22 +43,6 @@ public class PaymentMethod {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Data getData() {
-		return data;
-	}
-
-	public void setData(Data data) {
-		this.data = data;
-	}
-
-	public ItemType getItemType() {
-		return itemType;
-	}
-
-	public void setItemType(ItemType itemType) {
-		this.itemType = itemType;
 	}
 
 	public String getToken() {
@@ -64,20 +53,18 @@ public class PaymentMethod {
 		this.token = token;
 	}
 
-	public Boolean getDefault() {
+	public Boolean getIsDefault() {
 		return isDefault;
 	}
 
-	public void setDefault(Boolean aDefault) {
-		isDefault = aDefault;
+	public void setIsDefault(Boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 
 	@Override
 	public String toString() {
 		return "PaymentMethod{" +
 				"description='" + description + '\'' +
-				", data=" + data +
-				", itemType=" + itemType +
 				", token='" + token + '\'' +
 				", isDefault=" + isDefault +
 				'}';

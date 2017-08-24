@@ -1,8 +1,10 @@
 package com.iugu.model;
 
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
 	private String description;
@@ -11,6 +13,10 @@ public class Item {
 	
 	@JsonProperty("price_cents")
 	private Integer priceCents;
+	
+	public Item() {
+		
+	}
 	
 	public Item(String description, Integer quantity, Integer priceCents) {
 		this.description = description;
@@ -38,8 +44,17 @@ public class Item {
 		return priceCents;
 	}
 
-	public void setPrice_cents(Integer priceCents) {
+	public void setPriceCents(Integer priceCents) {
 		this.priceCents = priceCents;
 	}
 	
+	@Override
+	public String toString() {
+		final StringBuffer sb = new StringBuffer("Item{");
+		sb.append(", description='").append(description).append('\'');
+		sb.append(", quantity=").append(quantity);
+		sb.append(", priceCents=").append(priceCents);
+		sb.append('}');
+		return sb.toString();
+	}
 }

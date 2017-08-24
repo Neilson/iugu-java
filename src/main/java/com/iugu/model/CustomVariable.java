@@ -1,7 +1,9 @@
 package com.iugu.model;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomVariable {
 
 	public CustomVariable(String name, String value) {
@@ -12,7 +14,7 @@ public class CustomVariable {
 	private String name;
 
 	private String value;
-
+	
 	@JsonProperty("_destroy")
 	private Boolean destroy;
 
